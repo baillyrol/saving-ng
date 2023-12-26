@@ -27,8 +27,4 @@ export class DashboardComponent {
     return accounts?.map(account => account.comingBalance)
       .reduce((previousValue, currentValue) => previousValue + currentValue, 0);
   });
-
-  protected cashFlows = this.savingFacade.getCashFlows(13);
-
-  protected cashFlowDetails: Signal<CashFlowDetails |undefined> = this.savingFacade.getCashFlowDetails();
 }

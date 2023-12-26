@@ -37,7 +37,7 @@ export class LineChartComponent implements OnInit{
         ]
       },
       options: {
-        aspectRatio: 5,
+        aspectRatio: 7,
         backgroundColor: 'lightblue',
         borderColor: 'lightblue',
 

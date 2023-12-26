@@ -8,7 +8,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import {RouterOutlet} from "@angular/router";
+import {RouterLink, RouterOutlet} from "@angular/router";
+import {MatLineModule} from "@angular/material/core";
 
 @Component({
   selector: 'app-side-nav',
@@ -23,6 +24,8 @@ import {RouterOutlet} from "@angular/router";
     MatIconModule,
     AsyncPipe,
     RouterOutlet,
+    RouterLink,
+    MatLineModule,
   ]
 })
 export class SideNavComponent {

@@ -10,12 +10,18 @@
   background: inherit;
 }
 
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-
 .app-content {
   padding: 1rem;
+}
+
+.center-flex {
+  display: flex;
+  align-items: center;
+  span {
+    margin-left: 0.5rem;
+  }
+}
+
+mat-sidenav-content {
+  position: relative;
 }
