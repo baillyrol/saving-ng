@@ -1,0 +1,175 @@
+<h1>Mon patrimoine 2023</h1>
+
+<div class="section resume-card-section">
+  <mat-card class="card-elevation">
+    <mat-card-header>
+      <mat-card-title>Revenus</mat-card-title>
+    </mat-card-header>
+    <mat-card-content><h3>40000 €</h3></mat-card-content>
+  </mat-card>
+  <mat-card class="card-elevation">
+    <mat-card-header>
+      <mat-card-title>Dépenses</mat-card-title>
+    </mat-card-header>
+    <mat-card-content><h3>-3500 €</h3></mat-card-content>
+  </mat-card>
+  <mat-card class="card-elevation">
+    <mat-card-header>
+      <mat-card-title>Cash flow</mat-card-title>
+    </mat-card-header>
+    <mat-card-content><h3>5000 €</h3></mat-card-content>
+  </mat-card>
+  <mat-card class="card-elevation">
+    <mat-card-header>
+      <mat-card-title>Trésorie</mat-card-title>
+    </mat-card-header>
+    <mat-card-content><h3>25000 €</h3></mat-card-content>
+  </mat-card>
+</div>
+
+<div class="section chart-bar-section">
+  <app-bar-chart class="item"></app-bar-chart>
+  <div class="item top-5-section">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Top 5 - Revenus</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table>
+          <tr>
+            <td>Salaire</td>
+            <td>15000 €</td>
+          </tr>
+          <tr>
+            <td>Chèque repas</td>
+            <td>2400 €</td>
+          </tr>
+          <tr>
+            <td>Garage</td>
+            <td>1200 €</td>
+          </tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Top 5 - Dépenses</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table>
+          <tbody>
+          <tr>
+            <td>Crédit immobilier</td>
+            <td>1200 €</td>
+          </tr>
+          <tr>
+            <td>Voiture</td>
+            <td>3000 €</td>
+          </tr>
+          <tr>
+            <td>Abonnement privé</td>
+            <td>1000 €</td>
+          </tr>
+          </tbody>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+
+<div>
+  <app-line-chart></app-line-chart>
+</div>
+
+
+<mat-accordion *ngIf="accounts() as accounts">
+  <mat-expansion-panel *ngFor="let account of accounts" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{account.name}}
+      </mat-panel-title>
+      <mat-panel-description>
+        Balance: {{account.comingBalance}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>This is the primary content of the panel.</p>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<div class="row section" *ngIf="cashFlows() as cashFlows">
+  <ng-container *ngFor="let cashFlow of cashFlows">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Cashflow {{cashFlow.month}}/2023</mat-card-title>
+        <mat-card-subtitle>Nombre de transactions: {{cashFlow.totalTransaction}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Income: {{cashFlow.income}} €</p>
+        <p>Expense: {{cashFlow.expense}} €</p>
+        <p>Cahsflow: {{cashFlow.cashFlow}} €</p>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+</div>
+
+<div class="section" *ngIf="cashFlowDetails() as cashFlowDetails">
+  <mat-card>
+    <mat-card-title>Cash flow detail 12/2023</mat-card-title>
+    <mat-card-subtitle>
+      Compte: {{cashFlowDetails.accountEntity.name}}<br>
+      IBAN: {{cashFlowDetails.accountEntity.iban}}<br>
+      <span>Période: {{cashFlowDetails.cashFlow.firstDate}} - {{cashFlowDetails.cashFlow.lastDate}}</span>
+    </mat-card-subtitle>
+    <mat-card-content>
+      <h2>Income</h2>
+      <table mat-table [dataSource]="cashFlowDetails.income" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Date</th>
+          <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="formattedValue">
+          <th mat-header-cell *matHeaderCellDef> Montant</th>
+          <td mat-cell *matCellDef="let element"> {{element.formattedValue}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="originalWording">
+          <th mat-header-cell *matHeaderCellDef> Information</th>
+          <td mat-cell *matCellDef="let element"> {{element.originalWording}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['date', 'formattedValue', 'originalWording']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['date', 'formattedValue', 'originalWording'];"></tr>
+      </table>
+      <br>
+      <h2>Expense</h2>
+
+      <table mat-table [dataSource]="cashFlowDetails.expense" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Date</th>
+          <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="formattedValue">
+          <th mat-header-cell *matHeaderCellDef> Montant</th>
+          <td mat-cell *matCellDef="let element"> {{element.formattedValue}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="originalWording">
+          <th mat-header-cell *matHeaderCellDef> Information</th>
+          <td mat-cell *matCellDef="let element"> {{element.originalWording}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['date', 'formattedValue', 'originalWording']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['date', 'formattedValue', 'originalWording'];"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+</div>
