@@ -1,0 +1,13 @@
+.section {
+  display: flex;
+  flex-flow: row wrap;
+
+  mat-card {
+    flex-grow: 1;
+    margin: 1rem;
+  }
+}
+
+mat-card-content {
+  margin-top: 0.5rem;
+}
