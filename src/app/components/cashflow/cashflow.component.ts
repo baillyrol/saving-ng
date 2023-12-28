@@ -25,7 +25,7 @@ export class CashflowComponent implements AfterViewInit {
 
   private savingFacade = inject(SavingFacade);
 
-  protected cashFlows = this.savingFacade.getCashFlows(13);
+  protected cashFlows = this.savingFacade.getCashFlows('476b1f92-0fc9-4939-9467-686f0d29c95a');
 
   protected cashFlowDetails: Signal<CashFlowDetails | undefined> = this.savingFacade.getCashFlowDetails();
 
