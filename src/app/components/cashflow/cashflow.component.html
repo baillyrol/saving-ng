@@ -18,12 +18,14 @@
 
 <div class="section" *ngIf="cashFlowDetails() as cashFlowDetails">
   <mat-card>
-    <mat-card-title>Cash flow detail {{cashFlowDetails.cashFlow.month}}/{{cashFlowDetails.cashFlow.year}}</mat-card-title>
-    <mat-card-subtitle>
-      Compte: {{cashFlowDetails.accountEntity.name}}<br>
-      IBAN: {{cashFlowDetails.accountEntity.iban}}<br>
-      <span>Période: {{cashFlowDetails.cashFlow.firstDate}} - {{cashFlowDetails.cashFlow.lastDate}}</span>
-    </mat-card-subtitle>
+    <mat-card-header>
+      <mat-card-title>Cash flow detail {{cashFlowDetails.cashFlow.month}}/{{cashFlowDetails.cashFlow.year}}</mat-card-title>
+      <mat-card-subtitle>
+        Compte: {{cashFlowDetails.accountEntity.name}}<br>
+        IBAN: {{cashFlowDetails.accountEntity.iban}}<br>
+        <span>Période: {{cashFlowDetails.cashFlow.firstDate}} - {{cashFlowDetails.cashFlow.lastDate}}</span>
+      </mat-card-subtitle>
+    </mat-card-header>
     <mat-card-content>
       <h2>Income</h2>
       <table mat-table matSort  [dataSource]="incomeDataSource" (matSortChange)="announceSortChange($event)">
@@ -49,7 +51,7 @@
       <br>
       <h2>Expense</h2>
 
-      <table mat-table [dataSource]="cashFlowDetails.expense" class="mat-elevation-z8">
+      <table mat-table [dataSource]="cashFlowDetails.expense">
 
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
