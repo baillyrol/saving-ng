@@ -11,15 +11,15 @@ export class SavingFacade {
   private readonly httpClient = inject(HttpClient);
 
   getAccounts(): Signal<Account[] | undefined> {
-    return toSignal<Account[]>(this.httpClient.get<Account[]>('http://localhost:8080/accounts'));
+    return toSignal<Account[]>(this.httpClient.get<Account[]>('/api/accounts'));
   }
 
   getCashFlows(account: string): Signal<CashFlow[] | undefined> {
-    return toSignal<CashFlow[]>(this.httpClient.get<CashFlow[]>('http://localhost:8080/accounts/' + account + '/cashFlows'));
+    return toSignal<CashFlow[]>(this.httpClient.get<CashFlow[]>('/api/accounts/' + account + '/cashFlows'));
   }
 
   getCashFlowDetails() {
-    return toSignal<CashFlowDetails>(this.httpClient.get<CashFlowDetails>('http://localhost:8080/accounts/476b1f92-0fc9-4939-9467-686f0d29c95a/cashFlows/11/details'));
+    return toSignal<CashFlowDetails>(this.httpClient.get<CashFlowDetails>('/api/accounts/fc5278fc-7bf5-40da-ba86-ceffb96426dc/cashFlows/01/details'));
   }
 
 }
